@@ -1,1 +1,1 @@
-rootProject.name = "search-food-ingredients-backend"
+rootProject.name = "sfi-backend"
