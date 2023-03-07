@@ -1,1 +1,6 @@
-
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/personal_dev_db?currentSchema=food_ingredients_app
+    username: postgres
+    password: postgres
