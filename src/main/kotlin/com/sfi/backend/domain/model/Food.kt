@@ -1,7 +1,7 @@
 package com.sfi.backend.domain.model
 
 data class Food(
-    val id: Long,
+    val id: String,
     val userId: String,
     val name: String,
     val calories: Int,

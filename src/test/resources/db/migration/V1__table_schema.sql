@@ -25,7 +25,7 @@ COMMENT ON COLUMN users.updated_at IS '更新日時';
 
 -- foods
 CREATE TABLE IF NOT EXISTS foods (
-    id bigserial,
+    id character varying(26),
     user_id character varying(26) NOT NULL,
     name character varying(255) NOT NULL,
     calories numeric(4,1) NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS foods (
     created_at timestamp with time zone NOT NULL,
     updated_at timestamp with time zone NOT NULL,
     PRIMARY KEY(id),
-    UNIQUE(id, user_id),
+    UNIQUE(user_id, name),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 

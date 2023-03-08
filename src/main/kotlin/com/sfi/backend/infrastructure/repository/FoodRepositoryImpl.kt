@@ -46,7 +46,7 @@ class FoodRepositoryImpl(
         jdbcTemplate.update(createSql, params)
     }
 
-    override fun findById(id: Long): Food? {
+    override fun findById(id: String): Food? {
         val params = mapOf(
             "id" to id
         )
@@ -75,7 +75,7 @@ class FoodRepositoryImpl(
         jdbcTemplate.update(updateSql, params)
     }
 
-    override fun delete(id: Long) {
+    override fun delete(id: String) {
         val params = mapOf(
             "id" to id
         )

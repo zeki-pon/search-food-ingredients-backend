@@ -42,7 +42,7 @@ internal class FoodRepositoryImplTest @Autowired constructor(
     @Test
     fun test() {
         val food = Food(
-            id = 1111,
+            id = "food_12345",
             userId = "usr_food_test",
             name = "test-food",
             calories = 100,
@@ -58,8 +58,8 @@ internal class FoodRepositoryImplTest @Autowired constructor(
         }
 
         // find by id
-        var findByIdResult = foodRepository.findById(1111)
-        assertEquals(1111, findByIdResult!!.id)
+        var findByIdResult = foodRepository.findById("food_12345")
+        assertEquals("food_12345", findByIdResult!!.id)
         assertEquals("usr_food_test", findByIdResult.userId)
         assertEquals("test-food", findByIdResult.name)
         assertEquals(100, findByIdResult.calories)
@@ -77,8 +77,8 @@ internal class FoodRepositoryImplTest @Autowired constructor(
         }
 
         // find by id
-        findByIdResult = foodRepository.findById(1111)
-        assertEquals(1111, findByIdResult!!.id)
+        findByIdResult = foodRepository.findById("food_12345")
+        assertEquals("food_12345", findByIdResult!!.id)
         assertEquals("usr_food_test", findByIdResult.userId)
         assertEquals("test-food", findByIdResult.name)
         assertEquals(100, findByIdResult.calories)
@@ -89,10 +89,10 @@ internal class FoodRepositoryImplTest @Autowired constructor(
 
         // delete
         assertDoesNotThrow {
-            foodRepository.delete(1111)
+            foodRepository.delete("food_12345")
         }
 
-        assertNull(foodRepository.findById(1111))
+        assertNull(foodRepository.findById("food_12345"))
         assertTrue(foodRepository.findByUserId("usr_food_test").isEmpty())
     }
 }
