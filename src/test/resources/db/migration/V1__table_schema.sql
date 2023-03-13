@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS foods (
     per_grams numeric(4,1) NOT NULL,
     created_at timestamp with time zone NOT NULL,
     updated_at timestamp with time zone NOT NULL,
-    PRIMARY KEY(id),
+    PRIMARY KEY(id, user_id),
     UNIQUE(user_id, name),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
