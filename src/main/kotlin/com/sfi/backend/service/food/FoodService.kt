@@ -10,34 +10,34 @@ class FoodService(
     private val foodRepository: FoodRepository
 ) {
     fun createFood(food: Food): Food {
-        foodRepository.create(food.copy(id = food.id))
+        foodRepository.create(food)
 
-        return foodRepository.findById(food.id)!!
+        return foodRepository.findByIdAndUserId(food.id, food.userId)!!
     }
 
     fun getList(userId: String): List<Food> {
         return foodRepository.findByUserId(userId)
     }
 
-    fun getDetail(foodId: String): Food {
-        return foodRepository.findById(foodId)
+    fun getDetail(foodId: String, userId: String): Food {
+        return foodRepository.findByIdAndUserId(foodId, userId)
             ?: throw IllegalArgumentException("This food data is not found: food_id=${foodId}")
     }
 
     fun updateFood(food: Food): Food {
-        foodRepository.findById(food.id)
+        foodRepository.findByIdAndUserId(food.id, food.userId)
             ?: throw IllegalArgumentException("This food data is not found: food_id=${food.id}")
 
         foodRepository.update(food)
 
-        return foodRepository.findById(food.id)!!
+        return foodRepository.findByIdAndUserId(food.id, food.userId)!!
     }
 
-    fun deleteFood(foodId: String): Food {
-        val food = foodRepository.findById(foodId)
+    fun deleteFood(foodId: String, userId: String): Food {
+        val food = foodRepository.findByIdAndUserId(foodId, userId)
             ?: throw IllegalArgumentException("This food data is not found: food_id=${foodId}")
 
-        foodRepository.delete(foodId)
+        foodRepository.delete(foodId, userId)
 
         return food
     }

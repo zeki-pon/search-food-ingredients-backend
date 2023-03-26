@@ -28,7 +28,7 @@ internal class FoodServiceTest {
         )
 
         // mock
-        whenever(foodRepository.findById(any())).thenReturn(expected)
+        whenever(foodRepository.findByIdAndUserId(any(), any())).thenReturn(expected)
 
         // given
         val food = expected.copy()
@@ -92,13 +92,14 @@ internal class FoodServiceTest {
         )
 
         // mock
-        whenever(foodRepository.findById(any())).thenReturn(expected)
+        whenever(foodRepository.findByIdAndUserId(any(), any())).thenReturn(expected)
 
         // given
         val foodId = "food_12345"
+        val userId = "user_12345"
 
         // when
-        val result = foodService.getDetail(foodId)
+        val result = foodService.getDetail(foodId, userId)
 
         // then
         Assertions.assertEquals("food_12345", result.id)
@@ -114,14 +115,15 @@ internal class FoodServiceTest {
     @Test
     fun givenAsNonExistentFoodId_whenExecutingGetDetailFunction_thenThrowException() {
         // mock
-        whenever(foodRepository.findById(any())).thenReturn(null)
+        whenever(foodRepository.findByIdAndUserId(any(), any())).thenReturn(null)
 
         // given
         val foodId = "food_12345"
+        val userId = "user_12345"
 
         // when
         val result = Assertions.assertThrows(java.lang.IllegalArgumentException::class.java) {
-            foodService.getDetail(foodId)
+            foodService.getDetail(foodId, userId)
         }
 
         // then
@@ -143,7 +145,7 @@ internal class FoodServiceTest {
         )
 
         // mock
-        whenever(foodRepository.findById(any())).thenReturn(expected)
+        whenever(foodRepository.findByIdAndUserId(any(), any())).thenReturn(expected)
 
         // given
         val food = expected.copy()
@@ -165,7 +167,7 @@ internal class FoodServiceTest {
     @Test
     fun givenAsNonExistentFood_whenExecutingUpdateFoodFunction_thenThrowException() {
         // mock
-        whenever(foodRepository.findById(any())).thenReturn(null)
+        whenever(foodRepository.findByIdAndUserId(any(), any())).thenReturn(null)
 
         // given
         val food = Food(
@@ -203,13 +205,14 @@ internal class FoodServiceTest {
         )
 
         // mock
-        whenever(foodRepository.findById(any())).thenReturn(expected)
+        whenever(foodRepository.findByIdAndUserId(any(), any())).thenReturn(expected)
 
         // given
         val foodId = "food_12345"
+        val userId = "user_12345"
 
         // when
-        val result = foodService.deleteFood(foodId)
+        val result = foodService.deleteFood(foodId, userId)
 
         // then
         Assertions.assertEquals("food_12345", result.id)
@@ -225,14 +228,15 @@ internal class FoodServiceTest {
     @Test
     fun givenAsNonExistentFoodId_whenExecutingDeleteFoodFunction_thenThrowException() {
         // mock
-        whenever(foodRepository.findById(any())).thenReturn(null)
+        whenever(foodRepository.findByIdAndUserId(any(), any())).thenReturn(null)
 
         // given
         val foodId = "food_12345"
+        val userId = "user_12345"
 
         // when
         val result = Assertions.assertThrows(java.lang.IllegalArgumentException::class.java) {
-            foodService.deleteFood(foodId)
+            foodService.deleteFood(foodId, userId)
         }
 
         // then

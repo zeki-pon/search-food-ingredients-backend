@@ -17,7 +17,7 @@ class FoodRepositoryImpl(
             "VALUES (:id, :userId, :name, :calories, :protein, :fat, :carbohydrate, :perGrams, :createdAt, :updatedAt)"
 
     val findByIdSql = "SELECT id, user_id, name, calories, protein, fat, carbohydrate, per_grams FROM food_ingredients_app.foods " +
-            "WHERE id = :id"
+            "WHERE id = :id AND user_id = :userId"
 
     val findByUserIdSql = "SELECT id, user_id, name, calories, protein, fat, carbohydrate, per_grams FROM food_ingredients_app.foods " +
             "WHERE user_id = :userId"
@@ -25,9 +25,9 @@ class FoodRepositoryImpl(
     val updateSql = "UPDATE food_ingredients_app.foods SET " +
             "(name, calories, protein, fat, carbohydrate, per_grams, updated_at) = " +
             "(:name, :calories, :protein, :fat, :carbohydrate, :perGrams, :updatedAt) " +
-            "WHERE id = :id"
+            "WHERE id = :id AND user_id = :userId"
 
-    val deleteSql = "DELETE FROM food_ingredients_app.foods WHERE id = :id"
+    val deleteSql = "DELETE FROM food_ingredients_app.foods WHERE id = :id AND user_id = :userId"
 
 
     override fun create(food: Food) {
@@ -46,9 +46,10 @@ class FoodRepositoryImpl(
         jdbcTemplate.update(createSql, params)
     }
 
-    override fun findById(id: String): Food? {
+    override fun findByIdAndUserId(id: String, userId: String): Food? {
         val params = mapOf(
-            "id" to id
+            "id" to id,
+            "userId" to userId
         )
         val rows = jdbcTemplate.query(findByIdSql, params, DataClassRowMapper(Food::class.java))
         return if(rows.isEmpty()) null else rows.first()
@@ -64,6 +65,7 @@ class FoodRepositoryImpl(
     override fun update(food: Food) {
         val params = mapOf(
             "id" to food.id,
+            "userId" to food.userId,
             "name" to food.name,
             "calories" to food.calories,
             "protein" to food.protein,
@@ -75,9 +77,10 @@ class FoodRepositoryImpl(
         jdbcTemplate.update(updateSql, params)
     }
 
-    override fun delete(id: String) {
+    override fun delete(id: String, userId: String) {
         val params = mapOf(
-            "id" to id
+            "id" to id,
+            "userId" to userId
         )
         jdbcTemplate.update(deleteSql, params)
     }

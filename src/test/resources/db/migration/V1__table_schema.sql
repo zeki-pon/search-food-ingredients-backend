@@ -36,7 +36,6 @@ CREATE TABLE IF NOT EXISTS foods (
     created_at timestamp with time zone NOT NULL,
     updated_at timestamp with time zone NOT NULL,
     PRIMARY KEY(id, user_id),
-    UNIQUE(user_id, name),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 

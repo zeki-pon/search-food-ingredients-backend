@@ -58,7 +58,7 @@ internal class FoodRepositoryImplTest @Autowired constructor(
         }
 
         // find by id
-        var findByIdResult = foodRepository.findById("food_12345")
+        var findByIdResult = foodRepository.findByIdAndUserId("food_12345", "usr_food_test")
         assertEquals("food_12345", findByIdResult!!.id)
         assertEquals("usr_food_test", findByIdResult.userId)
         assertEquals("test-food", findByIdResult.name)
@@ -77,7 +77,7 @@ internal class FoodRepositoryImplTest @Autowired constructor(
         }
 
         // find by id
-        findByIdResult = foodRepository.findById("food_12345")
+        findByIdResult = foodRepository.findByIdAndUserId("food_12345", "usr_food_test")
         assertEquals("food_12345", findByIdResult!!.id)
         assertEquals("usr_food_test", findByIdResult.userId)
         assertEquals("test-food", findByIdResult.name)
@@ -89,10 +89,10 @@ internal class FoodRepositoryImplTest @Autowired constructor(
 
         // delete
         assertDoesNotThrow {
-            foodRepository.delete("food_12345")
+            foodRepository.delete("food_12345", "usr_food_test")
         }
 
-        assertNull(foodRepository.findById("food_12345"))
+        assertNull(foodRepository.findByIdAndUserId("food_12345", "usr_food_test"))
         assertTrue(foodRepository.findByUserId("usr_food_test").isEmpty())
     }
 }
