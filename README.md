@@ -28,11 +28,17 @@
   - https://qiita.com/opengl-8080/items/c105152c9ca48509bd0c
   - https://qiita.com/suke_masa/items/908805dd45df08ba28d8
 - SecurityContextHolder.getContext().authenticationのモック  
-  https://stackoverflow.com/questions/57570950/how-to-mock-securitycontextholder-getcontext-getauthentication-getcredential
+  - https://stackoverflow.com/questions/57570950/how-to-mock-securitycontextholder-getcontext-getauthentication-getcredential
+- ハッシュ化したパスワードの生成方法
+  - https://github.com/n-takehata/kotlin-server-side-programming-practice/tree/main/part2/book-manager
+- Postmanが起動しない(ローカルデータを削除することで解決)
+  - https://support.postman.com/hc/en-us/articles/4413408378519-Can-I-run-the-Postman-Desktop-app-on-my-Apple-M1-chip-
+  - https://support.postman.com/hc/en-us/articles/360025359014
+  - https://support.postman.com/hc/en-us/articles/4410785125271#h_01GGSSFFHJ46Y21XHA604GXK81
+- DynamicPropertySourceが動いていない
+  - @JvmStaticを付けることで解決
 
 ## 課題
-- DynamicPropertySourceが動いていない  
-  - @JvmStaticを付けることで解決
 - テストで使用するDBへの接続 でデフォルトスキーマを設定する方法はあるのか？
   - 一旦、SQLにスキーマ名を直書きすることで対応する
   - 余裕があれば対応すること
@@ -43,6 +49,8 @@
 - SpringのUserと区別するため、domain.model.User.ktのクラス名を変更したい。
 - Spring Bootのバージョンが古い(書籍で学習したバージョン)のため、バージョンアップすること
 - Redisの導入
+- postmanを使用した自動テスト
+- 異常系のレスポンス(現状ハンドリングしていないため)
 
 ## その他メモ
 Foodの更新時は、id, name, calories, protein, fat, carbohydrate, perGrams を必須にすべき
